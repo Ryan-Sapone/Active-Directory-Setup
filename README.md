@@ -52,7 +52,7 @@ Your prerequisite check should be completed and good to go, now you can click in
 <img src="https://user-images.githubusercontent.com/107446796/184460790-5f9e9b90-8aa3-45ff-b8a6-ac4e43fffdc2.png">
 
 <h1>Active Directory Users, Computers and Organizational Units</h1>
-Now we'll get into playing around with both Active Directory and Group Policies. </br></br>
+Now we'll get into playing around within Active Directory.</br></br>
 
 Once your server is booted back up and you're logged back in, go to Tools and select Active Directory Users and Computers. Just like in traditional desktop experiences of Windows, this is like a file tree. 
 
