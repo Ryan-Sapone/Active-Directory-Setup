@@ -1,5 +1,5 @@
 # Active-Directory-Setup
-A simple guide of how to set up Windows Server 2019 with Active Directory Domain Services and join other Windows machines to the domain. 
+A write-up following Heath Adams' tutorial for setting up a vulnerable Domain Controller with Active Directory services. Included in this write-up is how to configure Windows Server 2019, Active Directory Domain Services, Active Directory Certificate Services, Group Policy Objects, adding/managing Users, Groups, and Computers, and how to connect other Windows 10 Enterprise systems to the domain.
 
 <h1>Server 2019 Initial Installation</h1>
 After creating the virtual machine for Windows Server 2019, boot it up and begin the installation process. Create your disk partitions, create your Administrator password, and install your VMware tools if using VMware. Make sure you rename the server before rebooting. In my lab, I named my server RYAN-DC. 
