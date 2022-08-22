@@ -61,13 +61,33 @@ Now that we have the Group Policy Object (GPO) in place, let's right click on it
 One last thing is to make sure this policy is set to Enforced. You can switch back to the Group Policy Management tab, and right click on your domain name to select Enforced. 
 <img src="https://user-images.githubusercontent.com/107446796/186013640-90a5435a-ed85-4920-a618-d32ae00326be.png">
 
+Before we get into connecting the other Windows 10 machines to the domain, let's add a certificate to the domain. Under Server Manager, click on Manage > Add Roles & Features, and click next until you get to the Server Roles page. From here, select the Active Directory Certificate Services feature, and click next until you get to the confirmation page. Make sure to select the checkbox to restart the destination server if required. Once installed, click the notification box at the top and click Configure Active Directory Certificate Services. From here, click next until you get to Role Services. Select the "Certification Authority" box and click next. Keep clicking next until you get to the Validity Period. Change this from 5 years to something like 99 years. Click next, next, next, and finally configure. Go ahead and reboot the server, and then we're onto connecting our Windows 10 machines.
+<img src="https://user-images.githubusercontent.com/107446796/186024460-d82b81dc-7e44-41e1-9cd7-1dbaab5c94a3.png">
+<img src="https://user-images.githubusercontent.com/107446796/186024488-ae31eb8e-3cb2-445e-a725-f497c0f73fde.png">
+
+
+
 <h1>Joining Windows 10 Enterprise Machines to the Domain</h1>
+First thing that we'll do is create a new folder for our first Windows 10 machine. I named it "Share1". Right click and select Properties, click on Share, click on Share again, and make sure you select Yes for network discovery. 
+<img src="https://user-images.githubusercontent.com/107446796/186016537-6507f46f-c27d-4ecd-bcaf-fa2e23ca2638.png">
 
+Let's grab the IP address from our Domain Controller and note it down. In my case, it was 192.168.74.131. Let's go to our Windows 10 machine and configure TCP/IPv4 settings to make sure we set our DNS server as the IP address of our Domain Controller. 
+<img src="https://user-images.githubusercontent.com/107446796/186018244-2f73dd3c-c005-4a69-a36c-67a5158e4af1.png">
 
+In the search field on the desktop, type "access work or school" to bring up the feature to join the domain. Click on the Connect button and choose "Join to a local Active Directory domain". Type in your domain name (in my case, RYANLAB.local) and login with the Administrator account. Go ahead and skip the next prompt and restart the computer. 
+<img src="https://user-images.githubusercontent.com/107446796/186019101-84408f4a-6335-4e67-bfc7-244699c38770.png">
+<img src="https://user-images.githubusercontent.com/107446796/186019115-5073ba01-6cbe-40e6-abb7-4f1013d09c31.png">
 
+Now when we reboot, rather than logging into the machine as the local user, we're going to select Other User. You'll see now you're signing into the domain. Rather than logging in as Alice Cooper, I'm going to use the username and password I created inside of Active Directory Users and Groups (acooper). 
+<img src="https://user-images.githubusercontent.com/107446796/186019740-03846fdd-1cf2-4e62-8cc4-27f544ab8a52.png">
 
+So again - we are going to configure these machines as part of a hacking lab. Feel free to skip over these next bits if you don't want to do the L337 H4x0r stuff. If you do, carry on. </br></br>
 
+So now we're going to make acooper a local administrator of the first Win10 machine (RYANLAB1) and a local administrator of the second Win10 machine (RYANLAB2). So log off and log into the first Win10 machine as an administrator of the domain (note the RYANLAB\administrator as the username, otherwise you're not signing in as the domain administrator). Once signed in, open up Computer Management > Local Users and Groups > Groups > and double click on Administrators. From there, you can type in the login name of the user you want to add (acooper). If you hit Check Names, acooper is the only one so he gets added, otherwise it will give you a list of names to select. Click Apply and OK. Before we go, let's make sure that network discovery is enabled. Open up File Explorer, click on Network, and right click the banner message to turn on network discovery and file sharing. Make sure to do all of the same on the second Win10 machine. Also on that second Win10 machine, let's set up bcooper as an administrator of just that second machine as well. </br>
 
+<img src="https://user-images.githubusercontent.com/107446796/186021608-252867e7-4cb3-436f-80c5-7de27bc45c2f.png">
+<img src="https://user-images.githubusercontent.com/107446796/186021507-ef734023-fdfc-44aa-9a15-c141ae15f22a.png">
+<img src="https://user-images.githubusercontent.com/107446796/186025115-f5542d26-cf6c-45a9-b4cd-374060b2ca08.png">
+<img src="https://user-images.githubusercontent.com/107446796/186022283-78711b1e-6113-4247-b61f-86db2034f655.png">
 
-
-
+That's it! We were able to successfully set up a Domain Controller, join two computers to the domain, create a few new users, manage Group Policy Objects, and configure a SOHO environment. If you followed all of these steps, you now have an Active Directory environment to practice Help Desk/Desktop Support skills or penetration testing skills.
